@@ -56,5 +56,16 @@ tests({
 	'It should be able to compare the built-in Array.': function () {
 		eq(myPrototypeOf(Array.prototype, []), true);
 	},
+	'It should throw a TypeError if the prototype argument is undefined or null.': function () {
+		var errorWasThrown = false;
+		try {
+			myPrototypeOf(undefined, {});
+		}
+		catch (e) {
+			errorWasThrown = true;
+			eq(e instanceof TypeError, true);
+		}
+		eq(errorWasThrown, true);
+	},
 	// 'It should.': function () {},
 });
